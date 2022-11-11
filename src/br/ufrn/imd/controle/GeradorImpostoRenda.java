@@ -12,11 +12,11 @@ public class GeradorImpostoRenda {
 	public double calculaValorTotalTributo(Pessoa pessoa){
 		totalTributo = 0;
 		
-		totalTributo += pessoa.getConta().calculaTributos();
+		totalTributo = totalTributo + pessoa.calcularTributos();
 		
-		totalTributo += pessoa.getSeguro().calculaTributos();
+		totalTributo = totalTributo + pessoa.getConta().calcularTributos();
 		
-		totalTributo += pessoa.calculaTributos();
+		totalTributo = totalTributo + pessoa.getSeguro().calcularTributos();
 		
 		return totalTributo;
 	}

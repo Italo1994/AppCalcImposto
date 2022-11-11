@@ -1,7 +1,10 @@
 package br.ufrn.imd.visao;
 
-import br.ufrn.imd.modelo.Pessoa;
+// import br.ufrn.imd.modelo.*;
+// import br.ufrn.imd.dao.*;
+
 import br.ufrn.imd.modelo.SeguroVida;
+import br.ufrn.imd.modelo.Pessoa;
 import br.ufrn.imd.dao.PessoaDAO;
 import br.ufrn.imd.modelo.ContaCorrente;
 
@@ -20,7 +23,7 @@ public class ImṕostoRendaPF {
 		seguro1.setValor(2500);
 		
 		Pessoa pessoa1 = new Pessoa();
-		pessoa1.setNome("Roberto");
+		pessoa1.setNome("Mary Jane");
 		pessoa1.setSalario(3700.00);
 		pessoa1.setConta(contaCorrente1);
 		pessoa1.setSeguro(seguro1);
@@ -57,12 +60,19 @@ public class ImṕostoRendaPF {
 		pessoa3.setConta(contaCorrente3);
 		pessoa3.setSeguro(seguro3);
 
-        repositorio.adicionarPessoas(pessoa1);
-        repositorio.adicionarPessoas(pessoa2);
-        repositorio.adicionarPessoas(pessoa3);
+        repositorio.cadastrarPessoa(pessoa1);
+        repositorio.cadastrarPessoa(pessoa2);
+        repositorio.cadastrarPessoa(pessoa3);
 
-        repositorio.exibirPessoas();
+		// testando a listagem
+        repositorio.listarPessoas();
+
+		pessoa1.getConta().sacar(100);
+		pessoa2.getConta().depositar(120);
+		pessoa1.getConta().transferir(400, contaCorrente3);
+		
+		repositorio.listarPessoas();
         repositorio.calcularTributosPessoas();
-        repositorio.imprimirImpostoTotal();
+        repositorio.imprimeImpostoTotal();
     }
 }

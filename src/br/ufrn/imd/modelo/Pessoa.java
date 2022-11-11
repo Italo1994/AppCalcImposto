@@ -1,6 +1,6 @@
 package br.ufrn.imd.modelo;
 
-public class Pessoa implements Tributavel {
+public class Pessoa implements ITributavel {
     protected String nome;
 	protected double salario;
 	protected ContaCorrente conta;
@@ -10,40 +10,40 @@ public class Pessoa implements Tributavel {
 		salario = 0;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public double getSalario() {
-		return salario;
+	public String getNome() {
+		return nome;
 	}
 
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
 
-	public ContaCorrente getConta() {
-		return conta;
+	public double getSalario() {
+		return salario;
 	}
 
 	public void setConta(ContaCorrente conta) {
 		this.conta = conta;
 	}
 
-	public SeguroVida getSeguro() {
-		return seguro;
+	public ContaCorrente getConta() {
+		return conta;
 	}
 
 	public void setSeguro(SeguroVida seguro) {
 		this.seguro = seguro;
 	}
 
+	public SeguroVida getSeguro() {
+		return seguro;
+	}
+
     @Override
-	public double calculaTributos() {
+	public double calcularTributos() { // 11% do salário
 		return salario * 0.11;
 	}
 }

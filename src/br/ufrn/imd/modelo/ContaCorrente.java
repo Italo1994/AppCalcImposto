@@ -1,6 +1,6 @@
 package br.ufrn.imd.modelo;
 
-public class ContaCorrente implements Tributavel {
+public class ContaCorrente implements ITributavel {
     protected String numero;
     protected String agencia;
 	protected double saldo;
@@ -9,13 +9,16 @@ public class ContaCorrente implements Tributavel {
 		this.saldo = 0;
 	}
 
-    public void transfere(double valor, ContaCorrente conta){
-		if(valor > 0){
+    public boolean transferir(double valor, ContaCorrente conta) {
+		boolean autorizado = false;
+
+		if(valor > 0) {
 			System.out.println("Transferindo...");
 			
-            if(saca(valor)) {
-				conta.deposita(valor);
-                System.out.println("Tranferindo o valor de R$ " + valor + " para a conta de número " + conta.getNumero());
+            if(sacar(valor)) {
+				conta.depositar(valor);
+                System.out.println("Valor de R$ " + valor + " transferido para a conta de número " + conta.getNumero());
+				autorizado = true;
             }
 			else {
 				System.out.println("Não foi possível realizar a transferência!");
@@ -24,9 +27,11 @@ public class ContaCorrente implements Tributavel {
 		else { 
             System.out.println("Valor negativo informado!");
         }
+
+		return autorizado;
 	}
 
-    public void deposita(double valor){
+    public void depositar(double valor){
 		if(valor > 0){
 			this.saldo += this.saldo + valor;
 			System.out.println("Depósito no valor de R$ " + valor + " na conta de número " + getNumero() + " realizado com sucesso!");
@@ -36,12 +41,12 @@ public class ContaCorrente implements Tributavel {
         }
 	}
 
-    public boolean saca(double valor){
+    public boolean sacar(double valor){
 		boolean autorizado = false;
 
 		if(valor > 0 && this.saldo >= valor) {
 			this.saldo = this.saldo - valor;
-			System.out.println("Saque no valor de R$ " + valor + " ena conta de número " + getNumero() + " realizado com sucesso!");
+			System.out.println("Saque no valor de R$ " + valor + " na conta de número " + getNumero() + " realizado com sucesso!");
 			autorizado = true;
 		}
 		else {
@@ -76,7 +81,7 @@ public class ContaCorrente implements Tributavel {
 	}
 
 	@Override
-	public double calculaTributos() {
+	public double calcularTributos() { // 0,38% do saldo
 		return saldo * 0.0038;
 	}
 }

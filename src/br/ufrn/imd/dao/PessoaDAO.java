@@ -15,38 +15,38 @@ public class PessoaDAO {
 		geradorImpostoRenda = new GeradorImpostoRenda();
 	}
 	
-	public void adicionarPessoas(Pessoa pessoa) {
-
+	public void cadastrarPessoa(Pessoa pessoa) {
 		pessoas.add(pessoa);
-
 	}
 
-	public void exibirPessoas() {
-        System.out.println("========== LISTA DE PESSOAS ==========\n");
+	public void removerPessoa(Pessoa pessoa) {
+		pessoas.remove(pessoa);
+	}
+
+	public void listarPessoas() {
+        System.out.println("\n==================== LISTAGEM DE PESSOAS ====================\n");
 		
 		for(Pessoa pessoa : pessoas){
-            System.out.println("Nome...: " + pessoa.getNome());
-            System.out.println("Salário.: " + pessoa.getSalario());
-            System.out.println("Agência: " + pessoa.getConta().getAgencia());
-            System.out.println("Número da conta.: " + pessoa.getConta().getNumero());
-            System.out.println("Saldo.: " + pessoa.getConta().getSaldo());
-            System.out.println("Seguro.: " + pessoa.getSeguro().getNumero());
-            System.out.println("Beneficiário.: " + pessoa.getSeguro().getBeneficiado());
-            System.out.println("Valor do Seguro: " + pessoa.getSeguro().getValor());
+			System.out.println("*******************************************************");
+            System.out.println("Nome...: " + pessoa.getNome() + "\t" + "Salário.: " + pessoa.getSalario());
+			System.out.println("Agência: " + pessoa.getConta().getAgencia() + " Conta.: " + pessoa.getConta().getNumero() + "\t" + "Saldo.: " + pessoa.getConta().getSaldo());
+			System.out.println("Seguro.: " + pessoa.getSeguro().getNumero() + "\tBeneficiário.: " + pessoa.getSeguro().getBeneficiado());
+			System.out.println("Valor Seguro: " + pessoa.getSeguro().getValor());
+			System.out.println("*******************************************************");
             System.out.println("");
  		}
-		System.out.println("========== / ==========");
+		System.out.println("");
 	}
 	
-	public void imprimirImpostoTotal() {
+	public void imprimeImpostoTotal() {
 		
+		Pessoa pessoa = null;
+		String nomeBeneficiado = "";
 		double impostoTotal = 0;
 		double maiorImposto = 0;
 		double maiorSeguro = 0;
-		Pessoa pessoa = null;
-		String nomeBeneficiado = "";
 		
-		for(Pessoa pessoa2 : pessoas){
+		for(Pessoa pessoa2 : pessoas) {
 			impostoTotal = impostoTotal + geradorImpostoRenda.calculaValorTotalTributo(pessoa2);
 			if (geradorImpostoRenda.calculaValorTotalTributo(pessoa2) > maiorImposto) {
 				maiorImposto = geradorImpostoRenda.calculaValorTotalTributo(pessoa2);
@@ -59,23 +59,23 @@ public class PessoaDAO {
 			}
 		}
 
-        System.out.println("Total de impostos: " + impostoTotal);
-        System.out.println("Pessoa com o maior IRPF a pagar: " + pessoa.getNome());
-        System.out.println("Valor do IRPF a pagar: " + geradorImpostoRenda.calculaValorTotalTributo(pessoa));
+        System.out.println("Total de impostos arrecadados: " + impostoTotal);
+        System.out.println("Pessoa com o maior imposto a pagar: " + pessoa.getNome());
+        System.out.println("Valor do imposto a pagar por " + pessoa.getNome() + ": R$ " + geradorImpostoRenda.calculaValorTotalTributo(pessoa));
 
-        System.out.println("\nMaior beneficiado: " + nomeBeneficiado);
-        System.out.println("Valor do benefício: " + maiorSeguro);
+        System.out.println("\nNome do beneficiado com o maior valor de seguro: " + nomeBeneficiado);
+        System.out.println("Valor do benefício: R$ " + maiorSeguro);
 	}
 
     public void calcularTributosPessoas() {
 		
-		System.out.println("\n========== TRIBUTOS DAS PESSOAS ==========\n");
+		System.out.println("==================== TRIBUTOS DAS PESSOAS ====================\n");
 		
 		for(Pessoa pessoa : pessoas){
-            System.out.println("Nome...: " + pessoa.getNome());
-            System.out.println("IRPF...: " + geradorImpostoRenda.calculaValorTotalTributo(pessoa));
-            System.out.println("");
+			System.out.println("*********************************************");
+            System.out.println("Nome...: " + pessoa.getNome() + "\t" + "IRPF...: " + geradorImpostoRenda.calculaValorTotalTributo(pessoa));
+            System.out.println("*********************************************");
  		}
-		System.out.println("========== / ==========\n");
+		System.out.println("\n");
 	}
 }

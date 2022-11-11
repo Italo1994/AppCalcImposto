@@ -1,6 +1,6 @@
 package br.ufrn.imd.modelo;
 
-public class SeguroVida implements Tributavel {
+public class SeguroVida implements ITributavel {
     protected double valor;
 	protected double taxa;
     protected int numero;
@@ -44,7 +44,7 @@ public class SeguroVida implements Tributavel {
 	}
 
 	@Override
-	public double calculaTributos() {
+	public double calcularTributos() { //taxa de R$ 31,50
 		return taxa;
 	}
 }
