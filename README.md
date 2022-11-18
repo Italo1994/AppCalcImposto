@@ -36,3 +36,15 @@ f) Crie uma classe PessoaDAO (dentro do pacote dao) que se encarregará de guard
 g) Crie uma classe GeradorImpostoRenda (dentro do pacote controle) que recebe todos os bens tributáveis de uma Pessoa, soma cada um deles e retorna o valor total através do atributo double totalTributo e do método double calculaValorTotalTributo(Pessoa p).
 
 h) Crie uma classe de visão ImpostoRendaPF (dentro do pacote visao) que instancia três (3) objetos do tipo Pessoa, e na sequência, tais objetos precisarão ser persistidos em um ArrayList, pertencente à classe PessoaDAO, assim como os bens (salário, conta e seguro) de cada Pessoa deverão ser calculados, para que os tributos possam ser retidos no Imposto de Renda.
+
+# Requisitos Para Executar o Programa:
+openjdk 11.0.17
+OpenJDK Runtime Environment (build 11.0.17+8)
+
+apache-maven-3.8.6 ou +
+
+# Formas de Execução:
+Inicialmente, ao clonar ou baixar o projeto, acesse o diretório do mesmo via terminal e execute os comandos: 
+
+javac ImpostoRendaPF.java
+java ImpostoRendaPF
